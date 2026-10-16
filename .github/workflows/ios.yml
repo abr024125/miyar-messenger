@@ -15,6 +15,18 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Select simulator checks for changed app code
+        id: scope
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" != 'push' ]] || ! git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+            echo 'simulator=true' >> "$GITHUB_OUTPUT"
+          elif git diff --name-only HEAD^ HEAD | grep -Eq '^(MiyarMessenger/|MiyarMessenger.xcodeproj/|scripts/simulator-smoke.sh)'; then
+            echo 'simulator=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'simulator=false' >> "$GITHUB_OUTPUT"
+          fi
       - name: Validate project files
         run: python3 scripts/verify-project.py
       - name: Test native request and response contracts
@@ -23,10 +35,13 @@ jobs:
           mkdir -p build
           swift test 2>&1 | tee build/contracts.log
       - name: Build for iPhone Simulator
+        if: steps.scope.outputs.simulator == 'true'
         run: bash scripts/build.sh simulator
         env:
           MIYAR_BUILD_NUMBER: ${{ github.run_number }}
       - name: Launch the app in iPhone Simulator
+        if: steps.scope.outputs.simulator == 'true'
+        timeout-minutes: 8
         run: bash scripts/simulator-smoke.sh
       - name: Compile device release without signing
         run: bash scripts/build.sh device

@@ -34,7 +34,7 @@ executable = info.get('CFBundleExecutable', '')
 assert executable == 'MiyarMessenger' and (app / executable).is_file(), 'Compiled application executable is missing.'
 assert (app / executable).stat().st_size > 0, 'Compiled application executable is empty.'
 PY
-    xcrun lipo -verify_arch arm64 "$app/MiyarMessenger"
+    xcrun lipo "$app/MiyarMessenger" -verify_arch arm64
     payload_dir="$(mktemp -d "${TMPDIR:-/tmp/}miyar-device.XXXXXX")"
     trap 'rm -rf -- "$payload_dir"' EXIT
     mkdir "$payload_dir/Payload"

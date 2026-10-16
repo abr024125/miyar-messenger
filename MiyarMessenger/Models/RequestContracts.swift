@@ -21,7 +21,8 @@ enum RequestContracts {
             throw APIError(status: 400, message: "رابط الخدمة غير صالح")
         }
         destination.percentEncodedPath = relative.percentEncodedPath
-        destination.queryItems = (relative.queryItems ?? []) + query.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
+        let items = (relative.queryItems ?? []) + query.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
+        destination.queryItems = items.isEmpty ? nil : items
         guard let url = destination.url else { throw APIError(status: 400, message: "رابط الخدمة غير صالح") }
         return url
     }

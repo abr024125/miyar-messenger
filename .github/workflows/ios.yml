@@ -18,11 +18,16 @@ jobs:
       - name: Validate project files
         run: python3 scripts/verify-project.py
       - name: Test native request and response contracts
-        run: swift test
+        run: |
+          set -o pipefail
+          mkdir -p build
+          swift test 2>&1 | tee build/contracts.log
       - name: Build for iPhone Simulator
         run: bash scripts/build.sh simulator
         env:
           MIYAR_BUILD_NUMBER: ${{ github.run_number }}
+      - name: Launch the app in iPhone Simulator
+        run: bash scripts/simulator-smoke.sh
       - name: Compile device release without signing
         run: bash scripts/build.sh device
         env:
@@ -40,6 +45,7 @@ jobs:
           name: Miyar-iOS-validation-${{ github.run_number }}
           path: |
             build/*.log
+            build/*.png
             build/MiyarMessenger-Simulator.zip
           retention-days: 7
           if-no-files-found: ignore

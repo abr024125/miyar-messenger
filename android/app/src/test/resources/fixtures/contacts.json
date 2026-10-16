@@ -1,0 +1,29 @@
+{
+  "contacts": [
+    {
+      "id": "staff:1",
+      "name": "المشرف",
+      "role": "admin",
+      "online": false
+    },
+    {
+      "id": "student:S00000001",
+      "name": "طالبة محادثات",
+      "role": "student",
+      "online": true
+    },
+    {
+      "id": "staff:3",
+      "name": "معلمة محادثات 1",
+      "role": "teacher",
+      "online": false
+    },
+    {
+      "id": "staff:4",
+      "name": "معلمة محادثات 2",
+      "role": "teacher",
+      "online": false
+    }
+  ],
+  "hasMore": false
+}

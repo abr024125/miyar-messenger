@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "user": {
+    "id": "student:S00000001",
+    "role": "student",
+    "nameAr": "طالبة محادثات",
+    "portalOnly": true,
+    "requiresPasswordChange": false
+  },
+  "portalOnly": true,
+  "hiddenExam": true,
+  "availableExams": [],
+  "serverTime": 1792135134197
+}

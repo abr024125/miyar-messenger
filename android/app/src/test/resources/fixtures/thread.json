@@ -1,0 +1,100 @@
+{
+  "conversation": {
+    "id": "6bda5aef-940d-4807-8dc4-1e5fa1f2306d",
+    "kind": "direct",
+    "title": "طالبة محادثات",
+    "createdBy": "staff:2",
+    "updatedAt": 1792135135632,
+    "archived": false,
+    "muted": false,
+    "canSend": true,
+    "participants": [
+      {
+        "id": "staff:2",
+        "name": "معلمة محادثات 0",
+        "role": "teacher",
+        "lastReadId": 0,
+        "typingUntil": 0
+      },
+      {
+        "id": "student:S00000001",
+        "name": "طالبة محادثات",
+        "role": "student",
+        "lastReadId": 1,
+        "typingUntil": 0
+      }
+    ],
+    "lastMessage": {
+      "id": 3,
+      "text": "مرفق",
+      "attachment_id": "85ca723e-70e6-4234-a710-e5a6e0eee81f",
+      "deleted_at": null,
+      "senderId": "staff:2",
+      "senderName": "معلمة محادثات 0",
+      "createdAt": 1792135135632,
+      "kind": "attachment"
+    },
+    "unread": 1
+  },
+  "messages": [
+    {
+      "id": 1,
+      "conversationId": "6bda5aef-940d-4807-8dc4-1e5fa1f2306d",
+      "senderId": "staff:2",
+      "senderName": "معلمة محادثات 0",
+      "clientId": "aa0b12cc-121f-4d86-93ca-08f917d03d46",
+      "text": "رسالة خاصة",
+      "createdAt": 1792135134778,
+      "deleted": false,
+      "kind": "text",
+      "attachment": null,
+      "reply": null,
+      "reactions": [
+        {
+          "messageId": 1,
+          "actorId": "student:S00000001",
+          "value": "👍"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "conversationId": "6bda5aef-940d-4807-8dc4-1e5fa1f2306d",
+      "senderId": "student:S00000001",
+      "senderName": "طالبة محادثات",
+      "clientId": "273fb565-b811-420c-a453-55d9010b7933",
+      "text": "رد الطالبة",
+      "createdAt": 1792135135066,
+      "deleted": false,
+      "kind": "text",
+      "attachment": null,
+      "reply": {
+        "id": 1,
+        "text": "رسالة خاصة",
+        "senderName": "معلمة محادثات 0"
+      },
+      "reactions": []
+    },
+    {
+      "id": 3,
+      "conversationId": "6bda5aef-940d-4807-8dc4-1e5fa1f2306d",
+      "senderId": "staff:2",
+      "senderName": "معلمة محادثات 0",
+      "clientId": "eac3892a-3005-4e63-85a1-6b17151bd436",
+      "text": "",
+      "createdAt": 1792135135632,
+      "deleted": false,
+      "kind": "image",
+      "attachment": {
+        "id": "85ca723e-70e6-4234-a710-e5a6e0eee81f",
+        "name": "sample.png",
+        "mime": "image/png",
+        "bytes": 68,
+        "url": "/api/messenger/media?id=85ca723e-70e6-4234-a710-e5a6e0eee81f&branch=1"
+      },
+      "reply": null,
+      "reactions": []
+    }
+  ],
+  "hasMore": false
+}

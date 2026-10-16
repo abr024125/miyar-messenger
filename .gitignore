@@ -7,3 +7,11 @@ xcuserdata/
 *.mobileprovision
 *.p12
 __pycache__/
+
+# Android local builds and private signing material
+.gradle/
+local.properties
+*.jks
+*.keystore
+*.apk
+*.aab

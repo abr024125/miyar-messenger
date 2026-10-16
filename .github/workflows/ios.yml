@@ -2,8 +2,10 @@ name: Miyar iOS validation
 on:
   workflow_dispatch:
   pull_request:
+    paths: ['MiyarMessenger/**', 'MiyarMessenger.xcodeproj/**', 'Tests/**', 'Package.swift', 'scripts/**', '.github/workflows/ios.yml', 'Distribution/ExportOptions.plist']
   push:
     branches: [main]
+    paths: ['MiyarMessenger/**', 'MiyarMessenger.xcodeproj/**', 'Tests/**', 'Package.swift', 'scripts/**', '.github/workflows/ios.yml', 'Distribution/ExportOptions.plist']
 permissions:
   contents: read
 concurrency:

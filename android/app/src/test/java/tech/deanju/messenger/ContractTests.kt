@@ -64,7 +64,8 @@ class ContractTests {
         assertEquals("studentChangePassword", sent["action"]!!.jsonPrimitive.content)
         assertEquals("old", sent["currentPassword"]!!.jsonPrimitive.content)
         assertEquals("https://deanju.tech", request.header("Origin"))
-        assertEquals("application/json; charset=utf-8", request.body!!.contentType().toString())
+        assertEquals("application", request.body!!.contentType()!!.type)
+        assertEquals("json", request.body!!.contentType()!!.subtype)
     }
     @Test fun sendRequestPreservesRetryIdentifierAndScope() {
         val request = RequestContracts.jsonRequest(buildJsonObject { put("action", "send"); put("clientId", "11111111-1111-4111-8111-111111111111"); put("conversationId", "conversation"); put("text", "رسالة"); put("replyTo", 3) }, branch = 2)

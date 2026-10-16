@@ -1,0 +1,45 @@
+name: Miyar iOS validation
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: miyar-ios-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate project files
+        run: python3 scripts/verify-project.py
+      - name: Test native request and response contracts
+        run: swift test
+      - name: Build for iPhone Simulator
+        run: bash scripts/build.sh simulator
+        env:
+          MIYAR_BUILD_NUMBER: ${{ github.run_number }}
+      - name: Compile device release without signing
+        run: bash scripts/build.sh device
+        env:
+          MIYAR_BUILD_NUMBER: ${{ github.run_number }}
+      - name: Save device IPA for personal signing
+        uses: actions/upload-artifact@v4
+        with:
+          name: Miyar-iPhone-Unsigned-${{ github.run_number }}
+          path: build/MiyarMessenger-Unsigned.ipa
+          retention-days: 7
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Miyar-iOS-validation-${{ github.run_number }}
+          path: |
+            build/*.log
+            build/MiyarMessenger-Simulator.zip
+          retention-days: 7
+          if-no-files-found: ignore

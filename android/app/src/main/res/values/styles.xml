@@ -1,9 +1,0 @@
-<resources>
-    <style name="Theme.Miyar" parent="android:style/Theme.Material.Light.NoActionBar">
-        <item name="android:fontFamily">@font/cairo_regular</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowActionModeOverlay">true</item>
-        <item name="android:colorAccent">#0584FE</item>
-        <item name="android:windowBackground">#FFFFFF</item>
-    </style>
-</resources>
